@@ -1,0 +1,27 @@
+{
+  "name": "calendar",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && touch dist/.gitkeep",
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.1.1",
+    "moment": "^2.29.1",
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^10.2.5",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "postcss": "^8.2.13",
+    "prettier": "^2.3.0",
+    "tailwindcss": "^2.1.2",
+    "vite": "^2.2.3",
+    "vite-plugin-compression": "^0.2.4"
+  }
+}

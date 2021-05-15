@@ -1,0 +1,53 @@
+version: '3.3'
+
+services:
+  app-calendar:
+    ports:
+      - "3000:3000"
+    container_name: calendar-cmd
+    build:
+      context: docker/ubuntu
+      args:
+        - USER_ID=1000
+        - GROUP_ID=1000
+    image: node/vue3-calendar-cmd
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+      - type: bind
+        source: ./app/dist
+        target: /dist
+    command: "npm run dev"
+    working_dir: /app
+    networks:
+      - backend
+      - frontend
+  http-server-calendar:
+    ports:
+      - "8000:8000"
+    container_name: http-server-vue
+    build:
+      context: docker/ubuntu
+      args:
+        - USER_ID=1000
+        - GROUP_ID=1000
+    image: node/vue3-calendar-cmd
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: ./app/dist
+        target: /dist
+    command: "http-server -p 8000 --brotli --gzip -c2678400"
+    working_dir: /dist
+    networks:
+      - backend
+      - frontend
+networks:
+  frontend:
+  backend:
